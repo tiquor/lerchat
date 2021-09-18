@@ -16,9 +16,9 @@ export const ServerProvider: FC = ({ children }) => {
     setServers(data._servers);
   };
 
-  useEffect(() => {
-    getServers();
-  }, []);
+  // useEffect(() => {
+  //   getServers();
+  // }, []);
 
   return (
     <ServerContext.Provider value={{ servers }}>

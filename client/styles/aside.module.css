@@ -7,3 +7,10 @@
     min-width: 176px;
   }
 }
+.aside{
+  border: 1px solid red;
+  width: 40%;
+}
+.container-Link{
+  background-color: rgb(235, 172, 172) !important;
+}

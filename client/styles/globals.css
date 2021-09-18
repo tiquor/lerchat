@@ -90,13 +90,13 @@ h6 {
 
 img {
   max-width: 100%;
-  height: auto;
 }
 
 p {
   font-family: var(--font);
   font-size: 20px;
   font-weight: 400;
+  margin: 0 !important;
 }
 
 .vh-72 {
@@ -115,7 +115,9 @@ p {
 .bg-dark-chat {
   background-color: var(--black-03) !important;
 }
-
+.bg-link-light{
+  background-color: var(--gray-normal)!important;
+}
 .bg-light-chat {
   background-color: var(--white-03) !important;
 }

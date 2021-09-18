@@ -7,7 +7,7 @@ import { useMessages } from '@store/message.store';
 const Namespaces: NextPage = () => {
   const router = useRouter();
   const { namespace } = router.query;
-  const { messages, addMessage } = useMessages(namespace as string);
+  // const { messages, addMessage } = useMessages(namespace as string);
 
   return (
     <section className='vh-100 d-flex flex-column justify-content-between'>
@@ -21,12 +21,12 @@ const Namespaces: NextPage = () => {
             The global chat starts here
           </p>
           <hr className='bg-light-chat mt-1 mb-3' />
-          {messages.map((el, idx) => (
+          {/* {messages.map((el, idx) => (
             <CardMessage key={idx} text={el.message} />
-          ))}
+          ))} */}
         </section>
       </div>
-      <ChatForm addMessage={addMessage} />
+      {/* <ChatForm addMessage={addMessage} /> */}
     </section>
   );
 };

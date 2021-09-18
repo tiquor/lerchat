@@ -7,9 +7,9 @@ export const useMessages = (
   namespace: string,
   author: string = '614263ff66b38891263bb846'
 ) => {
-  const socket: Socket<ServerEvents, ClientEvents> = io(
-    `http://localhost:5500/${namespace}`
-  );
+  // const socket: Socket<ServerEvents, ClientEvents> = io(
+  //   `http://localhost:5500/${namespace}`
+  // );
 
   const [messages, setMessages] = useState<IMessage[]>([]);
 
@@ -19,31 +19,31 @@ export const useMessages = (
     setMessages(data._messages);
   };
 
-  useEffect(() => {
-    socket.on('message:created', (message) => {
-      setMessages([...messages, message]);
-    });
+  // useEffect(() => {
+  //   socket.on('message:created', (message) => {
+  //     setMessages([...messages, message]);
+  //   });
 
-    console.log(messages);
-  }, [messages]);
+  //   console.log(messages);
+  // }, [messages]);
 
-  useEffect(() => {
-    socket.on('connect', () => {
-      socket.emit('user:connect', author);
-    });
+  // useEffect(() => {
+  //   socket.on('connect', () => {
+  //     socket.emit('user:connect', author);
+  //   });
 
-    if (namespace !== undefined) getMessages();
+  //   if (namespace !== undefined) getMessages();
 
-    return () => {
-      socket.off('connect');
-      socket.off('disconnect', () => {
-        setMessages([]);
-        socket.emit('user:disconnect', author);
-      });
-      socket.off('message');
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [namespace]);
+  //   return () => {
+  //     socket.off('connect');
+  //     socket.off('disconnect', () => {
+  //       setMessages([]);
+  //       socket.emit('user:disconnect', author);
+  //     });
+  //     socket.off('message');
+  //   };
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [namespace]);
 
   // socket.on('message:updated', (message) => {
   //   const existingMessage = messages.find((t) => t._id === message._id);
@@ -63,15 +63,15 @@ export const useMessages = (
   //   }
   // });
 
-  const addMessage = (message: string) => {
-    socket.emit('message:create', { message, author }, (res) => {
-      if ('error' in res) {
-        return new Error('Error in create Message');
-      }
+  // const addMessage = (message: string) => {
+  //   socket.emit('message:create', { message, author }, (res) => {
+  //     if ('error' in res) {
+  //       return new Error('Error in create Message');
+  //     }
 
-      setMessages([...messages, { _id: res.data, message, author }]);
-    });
-  };
+  //     setMessages([...messages, { _id: res.data, message, author }]);
+  //   });
+  // };
 
   // const updateMessage = (message: string, id: ObjectId) => {
   //   socket.emit('message:update', { message, id }, (res) => {
@@ -94,5 +94,5 @@ export const useMessages = (
   //   });
   // };
 
-  return { messages, addMessage };
+  // return { messages, addMessage };
 };
