@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
 import { info } from '../config/logging';
-import config from '../config/config';
+import config from '../config';
 
 const NAMESPACE = 'Auth';
 
