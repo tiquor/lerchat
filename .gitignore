@@ -1,12 +1,11 @@
-# compiles
+# modules
+node_modules
+
+# compile
 dist
 build
 
-# modules python and node
-node_modules
-venv
-
-# enviroments variables
+# enviroment variables
 .env
 .env.local
 .env.production
@@ -15,4 +14,3 @@ venv
 .vscode
 .idea
 .vim
-

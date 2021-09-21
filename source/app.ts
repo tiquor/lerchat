@@ -10,8 +10,6 @@ import httpServer from 'http';
 // routes
 import messageRouter from './routes/message.routes';
 import config from './config/config';
-import { InMemoryMessageRepository } from './libs/message-management/message.repository';
-import { createApplication } from './libs/app';
 
 const http = httpServer.createServer(app);
 
@@ -32,14 +30,3 @@ http.listen(app.get('PORT'), () =>
   console.log(`Listen on port http://localhost:${app.get('PORT')}`)
 );
 
-createApplication(
-  http,
-  {
-    messageRepository: new InMemoryMessageRepository()
-  },
-  {
-    cors: {
-      origin: [config.FRONT_URL]
-    }
-  }
-);
