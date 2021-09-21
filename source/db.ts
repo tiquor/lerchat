@@ -1,5 +1,5 @@
 import { connect, ConnectOptions } from 'mongoose';
-import config from './config/config';
+import config from './config';
 
 const options: ConnectOptions = {
   autoIndex: true,
@@ -8,7 +8,7 @@ const options: ConnectOptions = {
 
 (async () => {
   try {
-    const db = await connect(config.UC_DB, options);
+    const db = await connect(config.DB_CHAT, options);
 
     console.log('Mongodb connection SUCCESS ✔');
     console.log('Database is connected to:', db.connection.name);
