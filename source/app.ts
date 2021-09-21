@@ -1,15 +1,8 @@
-import express from 'express';
 import app from './index';
 import cors from 'cors';
-import path from 'path';
-import logger from 'morgan';
 import httpServer from 'http';
-
-// libs
-
-// routes
-import messageRouter from './routes/message.routes';
-import config from './config/config';
+import { createApplication } from './libs/app';
+import { MessageRepository } from './libs/messages/repository';
 
 const http = httpServer.createServer(app);
 
@@ -19,14 +12,19 @@ app.use(
     credentials: true
   })
 );
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/api/message', messageRouter);
 
 http.listen(app.get('PORT'), () =>
-  console.log(`Listen on port http://localhost:${app.get('PORT')}`)
+  console.log(`Listen on port ${app.get('BACK')}`)
 );
 
+createApplication(
+  http,
+  {
+    messageRepository: new MessageRepository()
+  },
+  {
+    cors: {
+      origin: [app.get('FRONT')]
+    }
+  }
+);
