@@ -4,9 +4,9 @@
   "description": "Server application with express for lerchat",
   "main": "source/app.ts",
   "scripts": {
-    "start": "node app.js",
+    "start": "node dist/app.js",
     "dev": "tsc-watch --onSuccess \"node dist/app.js\"",
-    "build": "babel --extensions .ts source -o dist"
+    "build": "babel source -d dist --extensions .ts"
   },
   "keywords": [
     "typescript",
@@ -40,6 +40,7 @@
     "mongoose": "^6.0.4",
     "morgan": "^1.10.0",
     "multer": "^1.4.3",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "ts-node": "^10.2.1"
   }
 }
