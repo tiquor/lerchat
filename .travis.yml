@@ -1,3 +1,4 @@
+sudo: required
 language: node_js
 
 cache:
@@ -32,8 +33,8 @@ notifications:
 deploy:
   provider: script
   script: docker push jochizan/lerchat-express:v1;
-    docker push registry.heroku.com/$HEROKU_APP/web;
-    heroku container:release web --app $HEROKU_APP
+    docker push registry.heroku.com/$HEROKU_APP_EXPRESS/web;
+    heroku container:release web --app $HEROKU_APP_EXPRESS
   app: lerchat-express
   on:
     repo: tiquor/lerchat
