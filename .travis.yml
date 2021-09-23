@@ -11,8 +11,8 @@ cache:
     - '~/.npm'
 node_js:
   - '16'
-services:
-  - docker
+# services:
+  # - docker
 git:
   depth: 3
 
