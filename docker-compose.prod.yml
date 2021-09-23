@@ -3,9 +3,7 @@ version: "3.9"
 services:
   app:
     container_name: lerchat-express
-    build:
-      context: .
-      dockerfile: ./dockerfile.prod
+    build: .
     restart: always
     env_file: .env.production
     ports:
