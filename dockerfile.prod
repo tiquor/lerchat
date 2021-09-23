@@ -8,9 +8,11 @@ COPY package.json yarn.lock ./
 
 RUN yarn
 
+COPY . .
+
 RUN yarn build
 
-COPY . .
+RUN rm -frv /usr/src/source
 
 EXPOSE 5000
 
