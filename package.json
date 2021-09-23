@@ -2,9 +2,9 @@
   "name": "lerchat-server-express",
   "version": "0.1.0",
   "description": "Server application with express for lerchat",
-  "main": "source/app.js",
+  "main": "source/app.ts",
   "scripts": {
-    "start": "node dist/app.js",
+    "start": "node app.js",
     "dev": "tsc-watch --onSuccess \"node dist/app.js\"",
     "build": "babel --extensions .ts source -o dist"
   },
