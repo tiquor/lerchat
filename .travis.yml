@@ -18,10 +18,11 @@ git:
 
 before_script:
   - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-  - docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY registry.heroku.com
+  - echo $HEROKU_API_KEY | docker login --username=$HEROKU_LOGIN --pasword-stdin registry.heroku.com
 
 script:
   - docker build -t jochizan/lerchat-express .
+  - docker tag jochizan/lerchat-express:latest jochizan/lerchat-express:v1
   - docker tag jochizan/lerchat-express:v1 registry.heroku.com/$HEROKU_APP_EXPRESS/web
 
 notifications:
