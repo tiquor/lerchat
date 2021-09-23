@@ -4,7 +4,7 @@
   "description": "Server application with express for lerchat",
   "main": "source/app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node dist/app.js",
     "dev": "tsc-watch --onSuccess \"node dist/app.js\"",
     "build": "babel --extensions .ts source -o dist"
   },
