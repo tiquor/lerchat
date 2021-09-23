@@ -1,0 +1,39 @@
+language: node_js
+
+cache:
+  directories:
+    - node_modules
+    - '~/.npm'
+node_js:
+  - '16'
+services:
+  - docker
+git:
+  depth: 3
+
+before_script:
+  - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+  - curl https://cli-assets.heroku.com/install.sh | sh #install heroku
+  - docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY registry.heroku.com
+
+script:
+  - docker build -t jochizan/lerchat-express -f dockerfile.prod .
+  - docker tag jochizan/lerchat-express:v1 registry.heroku.com/$HEROKU_APP/web 
+
+notifications:
+  slack:
+    secure: 'JN46uIEnj5ZSRYXQOIjgPYB1xtuVekWIRaH91acDwxNgkIQ2wG8bzAKKDHQR6xJQonBJv9rhpPTBWKKHEbaAKeWjxAHjeaRA7/fV25VreEHy3yrREuXDa9Bb/v5IjapcDch+crJ2QDA/9Mfq327C3hEIGfElDCovOb6LiiYbBo8tNrrDsQS1z9tMsm5NC3UzppjYpaTsD2X9TgRyM7RBf1dFW+EFDZoU/aYxWJyjosyq2Jrs9xFr7hy3aHML4VRXS6kl7bx1xbyQUa8ct3jKRERMx00a4rIA0kfMpiQMU8UeeAO3Pke7hFw+yjtTRg96v999nnVzUbU64QfDHYBeKmYz180O9J59fqJ2+s/m1HY+iYX4j9RkRx7Y/HKasO0sMKWQvn4BXSkuco/llJpaPYjSgqNvrNHFV3VNJc3ZwWfy6iUYocJlJDTh+He99IGDYdy+hJrn1A1va6YhidYBhnXPSB4XNPc/56cgdZSpI92dOL6ErxIdE8+M4P080lXkQhVFon+85X67QufIeyfgWCQJUVxVjMz+muCpmVKUyXquFMU7uVWAWC9Bidr3cV/sr+kg0xRvEWgIBcBj/vmhoJhF3lhE8usa9J/l38G4aWUoivWZeaf7hSBWRN36alVHNNn+p3i/0yFnto6eMgDm3FRWQfVJkQkByLsjGf8ZBFE='
+  email:
+    recipients:
+      - remnyachizot2015@gmail.com
+      - jochizan.apps40@gmail.com
+    on_success: always
+    on_failure: always
+deploy:
+  provider: script
+  script: docker push jochizan/lerchat-express:v1;
+    docker push registry.heroku.com/$HEROKU_APP/web;
+    heroku container:release web --app $HEROKU_APP
+  app: lerchat-express
+  on:
+    repo: tiquor/lerchat

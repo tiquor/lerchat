@@ -1,0 +1,17 @@
+FROM node:16
+
+RUN mkdir -p /usr/src
+
+WORKDIR /usr/src
+
+COPY package.json yarn.lock ./
+
+RUN npm i -g yarn
+
+RUN yarn
+
+COPY . .
+
+EXPOSE 5000
+
+CMD [ "yarn", "dev" ]
