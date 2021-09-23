@@ -1,6 +1,10 @@
 sudo: required
 language: node_js
 
+branches:
+  only:
+    - server-express
+
 cache:
   directories:
     - node_modules
@@ -38,3 +42,4 @@ deploy:
   app: lerchat-express
   on:
     repo: tiquor/lerchat
+    branch: server-express
