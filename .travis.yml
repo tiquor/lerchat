@@ -9,10 +9,13 @@ cache:
   directories:
     - node_modules
     - '~/.npm'
+
 node_js:
   - '16'
+
 services:
   - docker
+
 git:
   depth: 3
 
@@ -21,9 +24,9 @@ before_script:
   - docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY registry.heroku.com
 
 script:
-  - docker build -t jochizan/lerchat-express .
-  - docker tag jochizan/lerchat-express:latest jochizan/lerchat-express:v1
-  - docker tag jochizan/lerchat-express:v1 registry.heroku.com/$HEROKU_APP_EXPRESS/web
+  - docker build -t jochizan/lerchat-express -f dockerfile.prod .
+  - docker tag jochizan/lerchat-express:latest jochizan/lerchat-express:v1.1
+  - docker tag jochizan/lerchat-express:v1.1 registry.heroku.com/$HEROKU_APP_EXPRESS/web
 
 notifications:
   slack:
@@ -34,9 +37,10 @@ notifications:
       - jochizan.apps40@gmail.com
     on_success: always
     on_failure: always
+
 deploy:
   provider: script
-  script: docker push jochizan/lerchat-express:v1;
+  script: docker push jochizan/lerchat-express:v1.1;
     docker push registry.heroku.com/$HEROKU_APP_EXPRESS/web;
     heroku container:release web --app $HEROKU_APP_EXPRESS
   app: lerchat-express
