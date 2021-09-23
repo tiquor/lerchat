@@ -21,8 +21,8 @@ before_script:
   - docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY registry.heroku.com
 
 script:
-  - docker build -t jochizan/lerchat-express -f dockerfile.prod .
-  - docker tag jochizan/lerchat-express:v1 registry.heroku.com/$HEROKU_APP/web 
+  - docker build -t jochizan/lerchat-express .
+  - docker tag jochizan/lerchat-express:v1 registry.heroku.com/$HEROKU_APP_EXPRESS/web 
 
 notifications:
   slack:
