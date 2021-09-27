@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import asyncHandler from '../middlewares/async.handler';
 import Server from '../models/Server';
+import { getPagination } from '../utils/paginate';
 
 export const createServer = asyncHandler(
   async (req: Request, res: Response) => {
@@ -22,9 +23,11 @@ export const getAllServers = asyncHandler(
 export const getServersByCreator = asyncHandler(
   async (req: Request, res: Response) => {
     const { id } = req.params;
-    const _servers = await Server.find({ creator: id });
+    const { page, size } = req.query;
+    const paginate = getPagination(Number(page), Number(size));
+    const { docs } = await Server.paginate({ creator: id }, paginate);
 
-    res.status(200).send({ msg: `Get all servers by creator ${id}`, _servers });
+    res.status(200).send({ msg: `Get all servers by creator ${id}`, docs });
   }
 );
 

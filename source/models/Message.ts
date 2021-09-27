@@ -1,5 +1,6 @@
-import mongoose, { model, Schema } from 'mongoose';
-import IMessage from '../interfaces/message';
+import mongoose, { model, models, Schema } from 'mongoose';
+import mongoosePaginate from 'mongoose-paginate-v2';
+import IMessage, { MessageModel } from '../interfaces/message';
 
 mongoose.Promise = global.Promise;
 
@@ -16,5 +17,11 @@ const MessageSchema: Schema = new Schema(
   }
 );
 
-export default mongoose.models.Messages ||
-  model<IMessage>('Messages', MessageSchema);
+MessageSchema.plugin(mongoosePaginate);
+
+const Message: MessageModel<IMessage> = model<IMessage, MessageModel<IMessage>>(
+  'Messages',
+  MessageSchema
+);
+
+export default Message;

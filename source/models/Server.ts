@@ -1,5 +1,6 @@
 import mongoose, { model, Schema } from 'mongoose';
-import IServer from '../interfaces/server';
+import mongoosePaginate from 'mongoose-paginate-v2';
+import IServer, { ServerModel } from '../interfaces/server';
 
 mongoose.Promise = global.Promise;
 
@@ -18,5 +19,11 @@ const ServerSchema: Schema = new Schema(
   }
 );
 
-export default mongoose.models.Servers ||
-  model<IServer>('Servers', ServerSchema);
+ServerSchema.plugin(mongoosePaginate);
+
+const Server: ServerModel<IServer> = model<IServer, ServerModel<IServer>>(
+  'Servers',
+  ServerSchema
+);
+
+export default Server;

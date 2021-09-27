@@ -21,8 +21,8 @@ before_script:
 
 script:
   - docker build -t jochizan/lerchat-express -f dockerfile.prod .
-  - docker tag jochizan/lerchat-express:latest jochizan/lerchat-express:v0.7
-  - docker tag jochizan/lerchat-express:v0.7 registry.heroku.com/$HEROKU_APP_EXPRESS/web
+  - docker tag jochizan/lerchat-express:latest jochizan/lerchat-express:v0.8
+  - docker tag jochizan/lerchat-express:v0.8 registry.heroku.com/$HEROKU_APP_EXPRESS/web
 
 notifications:
   slack:
@@ -34,7 +34,7 @@ notifications:
 
 deploy:
   provider: script
-  script: docker push jochizan/lerchat-express:v0.7;
+  script: docker push jochizan/lerchat-express:v0.8;
     docker push registry.heroku.com/$HEROKU_APP_EXPRESS/web;
     heroku container:release web --app $HEROKU_APP_EXPRESS
   app: lerchat-express

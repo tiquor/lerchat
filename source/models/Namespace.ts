@@ -1,5 +1,6 @@
 import mongoose, { model, Schema } from 'mongoose';
-import INamespace from '../interfaces/namespace';
+import mongoosePaginate from 'mongoose-paginate-v2';
+import INamespace, { NamespaceModel } from '../interfaces/namespace';
 
 mongoose.Promise = global.Promise;
 
@@ -15,5 +16,11 @@ const NamespaceSchema: Schema = new Schema(
   }
 );
 
-export default mongoose.models.Namespaces ||
-  model<INamespace>('Namespaces', NamespaceSchema);
+NamespaceSchema.plugin(mongoosePaginate);
+
+const Namespace: NamespaceModel<INamespace> = model<
+  INamespace,
+  NamespaceModel<INamespace>
+>('Namespaces', NamespaceSchema);
+
+export default Namespace;

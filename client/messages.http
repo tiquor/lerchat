@@ -2,14 +2,13 @@ POST {{host}}/messages
 Content-Type: application/json
 
 {
-  "name": "Second Server 2",
-  "content": "Hello world! 4",
+  "content": "Hello world! 21",
   "author": "61512a876e4ecd13a1836597",
   "namespace": "61512a876e4ecd13a1836597"
 }
 
 ###
-GET {{host}}/messages/61512a876e4ecd13a1836597
+GET {{host}}/messages/61512a876e4ecd13a1836597?page=1
 
 ###
 PUT {{host}}/messages/61512abba10690d228405c44

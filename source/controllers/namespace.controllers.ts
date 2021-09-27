@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import asyncHandler from '../middlewares/async.handler';
 import Namespace from '../models/Namespace';
+import { getPagination } from '../utils/paginate';
 
 export const createNamespace = asyncHandler(
   async (req: Request, res: Response) => {
@@ -22,11 +23,11 @@ export const getAllNamespaces = asyncHandler(
 export const getNamespacesByServer = asyncHandler(
   async (req: Request, res: Response) => {
     const { id } = req.params;
-    const _namespaces = await Namespace.find({ server: id });
+    const { page, size } = req.query;
+    const options = getPagination(Number(page), Number(size));
+    const { docs } = await Namespace.paginate({ server: id }, options);
 
-    res
-      .status(200)
-      .send({ msg: `Get all namespaces by ${id} server`, _namespaces });
+    res.status(200).send({ msg: `Get all namespaces by ${id} server`, docs });
   }
 );
 

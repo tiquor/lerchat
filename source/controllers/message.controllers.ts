@@ -1,9 +1,10 @@
-import { createConnection, Document } from 'mongoose';
 import asyncHandler from '../middlewares/async.handler';
 import { Request, Response } from 'express';
+import { getPagination } from '../utils/paginate';
 import Message from '../models/Message';
 import User from '../models/User';
 import config from '../config';
+import { createConnection, Document } from 'mongoose';
 
 export const createMessage = asyncHandler(
   async (req: Request, res: Response) => {
@@ -24,19 +25,14 @@ export const getAllMessages = asyncHandler(
 
 export const getMessagesByNamespace = asyncHandler(
   async (req: Request, res: Response) => {
-    const { id } = req.params;
-
-    const _messages = await Message.find({ namespace: id });
-
-    res.status(200).send({ msg: `Messages obtained from ${id}`, _messages });
-  }
-);
-
-export const getMessageWithUsers = asyncHandler(
-  async (req: Request, res: Response) => {
     const { namespace } = req.params;
-    const _messages = await Message.find({ namespace });
-    const _usersId = _messages.map((el) => el.author);
+    const { page, size } = req.query;
+    const options = getPagination(Number(page), Number(size), true);
+    const { docs: prevMessages } = await Message.paginate(
+      { namespace },
+      options
+    );
+    const _usersId = prevMessages.map((el) => el.author);
 
     const connection = createConnection(config.DB_TIQUOR);
     const UserModel = connection.model('Users', User);
@@ -47,22 +43,21 @@ export const getMessageWithUsers = asyncHandler(
     });
 
     const refactorUsers = _users.reduce<{ [key: string]: Document }>(
-      (acc, el) => {
-        acc[el._id] = el;
+      (acc, user) => {
+        acc[user._id] = user;
         return acc;
       },
       {}
     );
 
-    const _newMessages = _messages.map((message) => ({
+    const docs = prevMessages.map((message) => ({
       ...message._doc,
       author: refactorUsers[message.author]
     }));
 
     res.status(200).json({
       msg: `All the messages of the namespace with the ${namespace} were obtained`,
-      _newMessages,
-      refactorUsers
+      docs
     });
   }
 );

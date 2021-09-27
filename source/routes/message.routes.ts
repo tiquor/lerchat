@@ -1,8 +1,7 @@
 import { Router } from 'express';
 import {
   getAllMessages,
-  getMessageWithUsers,
-  // getMessagesByNamespace,
+  getMessagesByNamespace,
   createMessage,
   updateMessage,
   deleteMessage
@@ -12,9 +11,7 @@ const router = Router();
 
 router.get('/messages', getAllMessages);
 
-// router.get('/messages/:id', getMessagesByNamespace);
-
-router.get('/messages/:namespace', getMessageWithUsers);
+router.get('/messages/:namespace', getMessagesByNamespace);
 
 router.post('/messages', createMessage);
 
