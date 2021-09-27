@@ -3,13 +3,13 @@ import {
   createServer,
   updateServer,
   deleteServer,
-  // getAllServers,
+  getAllServers,
   getServersByCreator
 } from '../controllers/server.controllers';
 
 const router = Router();
 
-// router.get('/servers', getAllServers);
+router.get('/servers', getAllServers);
 
 router.get('/servers/:id', getServersByCreator);
 

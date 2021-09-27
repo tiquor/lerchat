@@ -2,7 +2,7 @@ POST {{host}}/servers
 Content-Type: application/json
 
 {
-  "name": "Second Server 2",
+  "name": "Third Server",
   "creator": "61512a876e4ecd13a1836597"
 }
 
