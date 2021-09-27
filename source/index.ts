@@ -1,7 +1,6 @@
 import express from 'express';
 import logger from 'morgan';
 import config from './config';
-import './db';
 
 const app = express();
 
@@ -12,5 +11,6 @@ app.set('MODE', config.MODE + '');
 
 app.use(express.json());
 app.use(logger(app.get('MODE')));
+app.use(express.urlencoded({ extended: false }));
 
 export default app;
