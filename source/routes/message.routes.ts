@@ -1,19 +1,25 @@
 import { Router } from 'express';
 import {
-  getAllMessages,
-  getMessagesByNamespace
+  // getAllMessages,
+  getMessageWithUsers,
+  getMessagesByNamespace,
+  createMessage,
+  updateMessage,
+  deleteMessage
 } from '../controllers/message.controllers';
 
 const router = Router();
 
-router.get('/messages', getAllMessages);
+// router.get('/messages', getAllMessages);
 
-router.get('/messages/:id', getMessagesByNamespace);
+// router.get('/messages/:id', getMessagesByNamespace);
 
-router.post('/messages');
+router.get('/messages/:namespace', getMessageWithUsers);
 
-router.put('/messages');
+router.post('/messages', createMessage);
 
-router.delete('/messages');
+router.put('/messages/:id', updateMessage);
+
+router.delete('/messages/:id', deleteMessage);
 
 export default router;

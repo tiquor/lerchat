@@ -1,0 +1,21 @@
+POST {{host}}/servers
+Content-Type: application/json
+
+{
+  "name": "Second Server 2",
+  "creator": "61512a876e4ecd13a1836597"
+}
+
+###
+GET {{host}}/servers/61512a876e4ecd13a1836597
+
+###
+PUT {{host}}/servers/61514288874bdeefaa583faa
+Content-Type: application/json
+
+{
+  "name": "Primary Sever 1 v4"
+}
+
+###
+DELETE {{host}}/servers/61512abba10690d228405c44

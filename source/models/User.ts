@@ -23,7 +23,7 @@ const UserSchema: Schema = new Schema(
     website: { type: String, required: false, maxlength: 36 },
     linkedin: { type: String, required: false, maxlength: 36 },
     biography: { type: String, required: false, maxlength: 512 },
-    servers: [{ type: Schema.Types.ObjectId, required: false }]
+    servers: [{ type: Schema.Types.ObjectId, required: false, ref: 'Servers' }]
   },
   {
     versionKey: false,

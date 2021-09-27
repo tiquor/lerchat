@@ -1,0 +1,21 @@
+POST {{host}}/namespaces
+Content-Type: application/json
+
+{
+  "name": "Space 3",
+  "server": "61514288874bdeefaa583faa"
+}
+
+###
+GET {{host}}/namespaces/61514288874bdeefaa583faa
+
+###
+PUT {{host}}/namespaces/615142c9874bdeefaa583fb4
+Content-Type: application/json
+
+{
+  "name": "Space 1 v2"
+}
+
+###
+DELETE {{host}}/namespaces/615142e2874bdeefaa583fb9

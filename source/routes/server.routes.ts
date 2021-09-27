@@ -1,20 +1,22 @@
 import { Router } from 'express';
 import {
   createServer,
-  getAllServers,
+  updateServer,
+  deleteServer,
+  // getAllServers,
   getServersByCreator
 } from '../controllers/server.controllers';
 
 const router = Router();
 
-router.get('/servers', getAllServers);
+// router.get('/servers', getAllServers);
 
 router.get('/servers/:id', getServersByCreator);
 
 router.post('/servers', createServer);
 
-router.put('/servers');
+router.put('/servers/:id', updateServer);
 
-router.delete('/servers');
+router.delete('/servers/:id', deleteServer);
 
 export default router;

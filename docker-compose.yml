@@ -12,7 +12,7 @@ services:
       - dft
 
   db:
-    image: mongo:latest
+    image: mongo
     container_name: lerchat-db
     volumes:
       - /data/mongo-lerchat:/data/db
@@ -20,9 +20,7 @@ services:
       - "25017:27017"
     networks:
       - dft
-    command: --quiet
 
 networks:
   dft:
     name: lerchat-net
-    external: true

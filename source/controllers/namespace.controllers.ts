@@ -5,7 +5,6 @@ import Namespace from '../models/Namespace';
 export const createNamespace = asyncHandler(
   async (req: Request, res: Response) => {
     const data = req.body;
-
     const _namespace = await Namespace.create(data);
 
     res.status(201).send({ msg: 'Create namespace success', _namespace });
@@ -23,7 +22,6 @@ export const getAllNamespaces = asyncHandler(
 export const getNamespacesByServer = asyncHandler(
   async (req: Request, res: Response) => {
     const { id } = req.params;
-
     const _namespaces = await Namespace.find({ server: id });
 
     res
@@ -33,9 +31,27 @@ export const getNamespacesByServer = asyncHandler(
 );
 
 export const updateNamespace = asyncHandler(
-  async (req: Request, res: Response) => {}
+  async (req: Request, res: Response) => {
+    const id = req.params.id;
+    const _namespace = await Namespace.findByIdAndUpdate(id, req.body, {
+      new: true
+    });
+
+    res.status(201).json({
+      msg: `The namespace with the id ${id} has been updated`,
+      _namespace
+    });
+  }
 );
 
 export const deleteNamespace = asyncHandler(
-  async (req: Request, res: Response) => {}
+  async (req: Request, res: Response) => {
+    const id = req.params.id;
+    const _namespace = await Namespace.findByIdAndDelete(id);
+
+    res.status(201).json({
+      msg: `The namespace with the id ${id} has been deleted`,
+      _namespace
+    });
+  }
 );

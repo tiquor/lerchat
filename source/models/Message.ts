@@ -5,8 +5,8 @@ mongoose.Promise = global.Promise;
 
 const MessageSchema: Schema = new Schema(
   {
-    message: { type: String, required: true, maxlength: 512 },
-    author: { type: Schema.Types.ObjectId, required: true },
+    content: { type: String, required: true, maxlength: 512 },
+    author: { type: Schema.Types.ObjectId, required: true, ref: 'Users' },
     namespace: { type: Schema.Types.ObjectId, required: true },
     state: { type: Boolean, default: true }
   },
