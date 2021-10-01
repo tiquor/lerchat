@@ -1,8 +1,15 @@
 node_modules
+
+# compile
+dist
+build
+
+# config
+client
 .github
 .vscode
 .idea
 .vim
-.dist
 .env.*
 *.md
+.travil.yml

@@ -1,0 +1,15 @@
+POST {{host}}/users
+Content-Type: application/json
+
+{
+  "names": "Joan José",
+  "surnames": "Roca Hormaza",
+  "email": "remnyachizot2015@gmail.com",
+  "password": {{password}}
+}
+
+###
+GET {{host}}/users/615622f2f60fa527ebca8778
+
+###
+DELETE {{host}}/users/615622f2f60fa527ebca8778

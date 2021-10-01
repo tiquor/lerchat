@@ -1,4 +1,7 @@
-import { Schema } from 'mongoose';
+import mongoose, { model, Schema } from 'mongoose';
+import IUser from '../interfaces/user';
+
+mongoose.Promise = global.Promise;
 
 const UserSchema: Schema = new Schema(
   {
@@ -12,16 +15,18 @@ const UserSchema: Schema = new Schema(
       lowercase: true,
       maxlength: 36
     },
-    password: { type: String, required: true, maxlength: 30 },
+    password: { type: String, required: true, maxlength: 36 },
     state: { type: Boolean, default: true },
     birthday: { type: Date, required: false },
-    image: { type: String, required: false, maxlength: 36 },
+    image: { type: String, required: false, maxlength: 40 },
+    avatar: { type: String, required: false, maxlength: 40 },
     organization: { type: String, required: false, maxlength: 36 },
     location: { type: String, required: false, maxlength: 36 },
     website: { type: String, required: false, maxlength: 36 },
     linkedin: { type: String, required: false, maxlength: 36 },
-    biography: { type: String, required: false, maxlength: 512 },
-    servers: [{ type: Schema.Types.ObjectId, required: false, ref: 'Servers' }]
+    github: { type: String, required: false, maxlength: 36 },
+    instagram: { type: String, required: false, maxlength: 36 },
+    biography: { type: String, required: false, maxlength: 512 }
   },
   {
     versionKey: false,
@@ -29,4 +34,4 @@ const UserSchema: Schema = new Schema(
   }
 );
 
-export default UserSchema;
+export default mongoose.models.Users || model<IUser>('Users', UserSchema);

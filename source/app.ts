@@ -1,6 +1,6 @@
 import app from './index';
 import cors from 'cors';
-import indexRoutes from './routes/index.routes';
+import indexRoutes from './routes';
 
 app.use(
   cors({

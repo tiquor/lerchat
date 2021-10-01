@@ -2,12 +2,12 @@ POST {{host}}/servers
 Content-Type: application/json
 
 {
-  "name": "Third Server",
-  "creator": "61512a876e4ecd13a1836597"
+  "name": "Second Server",
+  "creator": "615622f2f60fa527ebca8778"
 }
 
 ###
-GET {{host}}/servers/61512a876e4ecd13a1836597
+GET {{host}}/servers/615622f2f60fa527ebca8778
 
 ###
 PUT {{host}}/servers/61514288874bdeefaa583faa
@@ -18,4 +18,4 @@ Content-Type: application/json
 }
 
 ###
-DELETE {{host}}/servers/61512abba10690d228405c44
+DELETE {{host}}/servers/61562c86dff0bd58cfca4993

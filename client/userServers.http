@@ -1,0 +1,13 @@
+POST {{host}}/user-servers
+Content-Type: application/json
+
+{
+  "server": "",
+  "user": "61512a876e4ecd13a1836597"
+}
+
+###
+GET {{host}}/user-servers/61512a876e4ecd13a1836597
+
+###
+DELETE {{host}}/user-servers/61512abba10690d228405c44

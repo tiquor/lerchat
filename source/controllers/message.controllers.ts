@@ -1,10 +1,9 @@
 import asyncHandler from '../middlewares/async.handler';
+import { Document } from 'mongoose';
 import { Request, Response } from 'express';
 import { getPagination } from '../utils/paginate';
 import Message from '../models/Message';
 import User from '../models/User';
-import config from '../config';
-import { createConnection, Document } from 'mongoose';
 
 export const createMessage = asyncHandler(
   async (req: Request, res: Response) => {
@@ -12,14 +11,6 @@ export const createMessage = asyncHandler(
     const _message = await Message.create(data);
 
     res.status(201).json({ msg: 'Successfully created message', _message });
-  }
-);
-
-export const getAllMessages = asyncHandler(
-  async (req: Request, res: Response) => {
-    const _messages = await Message.find();
-
-    res.status(200).send({ msg: 'Get all messages', _messages });
   }
 );
 
@@ -32,11 +23,9 @@ export const getMessagesByNamespace = asyncHandler(
       { namespace },
       options
     );
-    const _usersId = prevMessages.map((el) => el.author);
 
-    const connection = createConnection(config.DB_TIQUOR);
-    const UserModel = connection.model('Users', User);
-    const _users = await UserModel.find({
+    const _usersId = prevMessages.map((el) => el.author);
+    const _users = await User.find({
       _id: {
         $in: _usersId
       }

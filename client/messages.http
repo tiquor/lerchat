@@ -2,9 +2,9 @@ POST {{host}}/messages
 Content-Type: application/json
 
 {
-  "content": "Hello world! 21",
-  "author": "61512a876e4ecd13a1836597",
-  "namespace": "61512a876e4ecd13a1836597"
+  "content": "Hello world! 1",
+  "author": "615622f2f60fa527ebca8778",
+  "namespace": "61562eaacd7d773c52dae4a9"
 }
 
 ###

@@ -1,6 +1,6 @@
 {
   "name": "lerchat-server-express",
-  "version": "0.1.0",
+  "version": "0.9.0",
   "description": "Server application with express for lerchat",
   "main": "source/app.ts",
   "scripts": {
@@ -12,7 +12,9 @@
     "typescript",
     "mongoose",
     "express",
-    "chat"
+    "nodejs",
+    "babel",
+    "cors"
   ],
   "author": "Joan Roca Hormaza",
   "license": "Apache-2.0",
@@ -24,8 +26,8 @@
     "@babel/preset-typescript": "^7.15.0",
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
-    "@types/jsonwebtoken": "^8.5.5",
     "@types/mongoose-paginate-v2": "^1.3.11",
+    "@types/bcrypt": "^5.0.0",
     "@types/morgan": "^1.9.3",
     "@types/node": "^16.7.10",
     "babel-preset-minify": "^0.5.1",
@@ -36,10 +38,11 @@
   "dependencies": {
     "@babel/plugin-transform-runtime": "^7.15.0",
     "@babel/runtime": "^7.15.4",
+    "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1",
+    "express-validation": "^3.0.8",
     "mongoose": "^6.0.4",
     "mongoose-paginate-v2": "^1.4.2",
     "morgan": "^1.10.0",
