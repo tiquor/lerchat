@@ -1,4 +1,6 @@
-const ContactPage = () => {
+import type { NextPage } from 'next';
+
+const ContactPage: NextPage = () => {
   return (
     <div className='container'>
       <div className='row'>

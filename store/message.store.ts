@@ -17,11 +17,8 @@ export const useMessages = (
   const getMessages = async () => {
     const res = await fetch(`${EXPRESS}/api/messages/${namespace}`);
     const data = await res.json();
-    // console.log(data);
     setMessages(data.docs);
   };
-
-  // console.log(messages);
 
   useEffect(() => {
     socket.on('message:created', (message) => {
@@ -79,7 +76,6 @@ export const useMessages = (
       body: JSON.stringify({ content, namespace, author })
     });
     const data: { msg: string; _message: IMessage } = await res.json();
-    // console.log(data);
 
     socket.emit('message:create', data._message, (res) => {
       if ('error' in res) {
